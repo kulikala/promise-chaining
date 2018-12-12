@@ -432,16 +432,16 @@
     describe('#process()', function () {
       it('should start calling stacked callback functions', function () {
         var chain = new Chain()
-                          .then(function () {
-                            return 1
-                          })
-                          .then(function (value) {
-                            return [value, 2]
-                          })
-                          .then(function (value) {
-                            expect(value).to.deep.equal([1, 2])
-                            flag = true
-                          })
+          .then(function () {
+            return 1
+          })
+          .then(function (value) {
+            return [value, 2]
+          })
+          .then(function (value) {
+            expect(value).to.deep.equal([1, 2])
+            flag = true
+          })
         var flag = false
 
         expect(chain.status).to.equal('pending')
@@ -631,71 +631,71 @@
     describe('then() argument', function () {
       it('can be static values, functions, or thenable objects', function (done) {
         var chain = new Chain()
-                          // Number
-                          .then(1)
+          // Number
+          .then(1)
 
-                          // Boolean
-                          .then(true)
+          // Boolean
+          .then(true)
 
-                          // Array
-                          .then([])
+          // Array
+          .then([])
 
-                          // Object
-                          .then({})
+          // Object
+          .then({})
 
-                          // Function
-                          .then(function () {
-                            expect(slice(arguments)).to.deep.equal([1, true, [], {}])
-                          })
+          // Function
+          .then(function () {
+            expect(slice(arguments)).to.deep.equal([1, true, [], {}])
+          })
 
-                          // Promise
-                          .then(waitFor())
+          // Promise
+          .then(waitFor())
 
-                          // Another Chain object
-                          .then(new Chain(waitFor, waitFor, waitFor))
+          // Another Chain object
+          .then(new Chain(waitFor, waitFor, waitFor))
 
-                          // Thenable object
-                          .then({
-                            then: function (next) {
-                              next('thenable')
-                            }
-                          })
+          // Thenable object
+          .then({
+            then: function (next) {
+              next('thenable')
+            }
+          })
 
-                          // Wrap-up
-                          .then(function (value) {
-                            expect(value).to.equal('thenable')
-                            done()
-                          })
+          // Wrap-up
+          .then(function (value) {
+            expect(value).to.equal('thenable')
+            done()
+          })
 
         chain.process()
       })
 
       it('can be function returns thenable object', function (done) {
         var chain = new Chain()
-                          // Returns Promise object
-                          .then(waitFor)
+          // Returns Promise object
+          .then(waitFor)
 
-                          // Or this way
-                          .then(function () {
-                            return waitFor()
-                          })
+          // Or this way
+          .then(function () {
+            return waitFor()
+          })
 
-                          // Thenable object
-                          .then(function () {
-                            return {
-                              then: function (next) {
-                                setTimeout(function () {
-                                  next('done')
-                                }, 10)
-                              }
-                            }
-                          })
+          // Thenable object
+          .then(function () {
+            return {
+              then: function (next) {
+                setTimeout(function () {
+                  next('done')
+                }, 10)
+              }
+            }
+          })
 
-                          // Wrap-up
-                          .then(function (value) {
-                            expect(value).to.equal('done')
-                            done()
-                          })
+          // Wrap-up
+          .then(function (value) {
+            expect(value).to.equal('done')
+            done()
+          })
 
         chain.process()
       })
