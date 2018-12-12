@@ -40,28 +40,28 @@
   }
 
   // Shorthand for utility methods
-  function slice(args) {
+  function slice (args) {
     return [].slice.call(args)
   }
 
-  function isFunction(value) {
+  function isFunction (value) {
     return typeof value === 'function'
   }
 
-  function isArray(value) {
+  function isArray (value) {
     return value instanceof Array
   }
 
-  function isObject(value) {
+  function isObject (value) {
     return value && typeof value === 'object'
   }
 
-  function isUndefined(value) {
+  function isUndefined (value) {
     return typeof value === 'undefined'
   }
 
   // Constructor of Class Chain
-  function Chain() {
+  function Chain () {
     var _list = slice(arguments)
     var _status = STATUS.PENDING
     var _reason
@@ -83,7 +83,7 @@
       }
     }
 
-    function _checkStatus() {
+    function _checkStatus () {
       if (_status !== STATUS.PENDING) {
         return false
       }
@@ -97,7 +97,7 @@
       return true
     }
 
-    function _process() {
+    function _process () {
       var args = slice(arguments)
       var item
       var ret
