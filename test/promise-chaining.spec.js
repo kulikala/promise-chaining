@@ -38,7 +38,7 @@
       var _fulfilled
       var _result
 
-      function resolve(result) {
+      function resolve (result) {
         if (typeof _fulfilled === 'function') {
           _fulfilled(result)
         } else {
@@ -63,19 +63,19 @@
   }
 
   // Shorthand for utility methods
-  function slice(args) {
+  function slice (args) {
     return [].slice.call(args)
   }
 
-  function genSecs() {
+  function genSecs () {
     return Math.floor(50 + Math.random() * 100)
   }
 
-  function throwsErrorFunc() {
+  function throwsErrorFunc () {
     throw new Error('throwsErrorFunc() is called')
   }
 
-  function waitFor() {
+  function waitFor () {
     var args = slice(arguments)
     var promise = new root.Promise(function (resolve) {
       setTimeout(function () {
@@ -96,7 +96,7 @@
       var SOME_CONDITION = true
       var OTHER_CONDITION = true
 
-      function promiseGenerator(n, arg) {
+      function promiseGenerator (n, arg) {
         // Creates and returns promise object
         return new root.Promise(function (resolve) {
           console.log('Task ' + n + ': start')
@@ -110,7 +110,7 @@
         })
       }
 
-      function thenableGenerator(n, arg) {
+      function thenableGenerator (n, arg) {
         // Creates and returns thenable object
         var resolve
 
@@ -130,7 +130,7 @@
         }
       }
 
-      function doAsyncTask(callback) {
+      function doAsyncTask (callback) {
         setTimeout(callback, 100)
       }
 
